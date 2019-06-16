@@ -11,8 +11,20 @@ import AVFoundation
 import Photos
 
 
-
-class ViewController: UIViewController {
+//AVCaptureFileOutputRecordingDelegateは必須
+class ViewController: UIViewController , AVCaptureFileOutputRecordingDelegate {
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+        }){( completed,error) in
+            if completed{
+                print("保存完了！")
+            }
+            
+        }
+    }
+    
     
     //設定に必要なもの
     var captureSession = AVCaptureSession()
@@ -30,8 +42,8 @@ class ViewController: UIViewController {
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     
     //buttonを押したときに使用
-    var idRecording = false /*Bool型*/
-
+    var isRecording = false /*Bool型*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +87,8 @@ class ViewController: UIViewController {
             captureSession.addInput(captureDeviceInput)
             
             let audioInput = try AVCaptureDeviceInput(device: audioDevice!)
+            captureSession.addInput(audioInput)
+            
             videoFileOutput = AVCaptureMovieFileOutput()
             captureSession.addOutput(videoFileOutput!)
             
@@ -99,6 +113,45 @@ class ViewController: UIViewController {
         captureSession.startRunning()
         
     }
-
+    
+    //アニメーションつけたいからOutletも用意
+    @IBOutlet weak var recordButton: UIButton!
+    
+    @IBAction func captureAction(_ sender: Any) {
+        
+        //isRecordingでカメラのオンオフの切り替え
+        
+        if !isRecording {
+            isRecording = true
+            
+            UIView.animate(withDuration: 0.5, delay:0.0,options:[.repeat,.autoreverse,.allowUserInteraction],animations:{() -> Void in self.recordButton.transform = CGAffineTransform(scaleX:0.5,y:0.5)},completion: nil)
+            
+            let outputPath = NSTemporaryDirectory() + "output.mp4"
+            let outputFileURL = URL(fileURLWithPath: outputPath)
+            videoFileOutput?.startRecording(to: outputFileURL, recordingDelegate: self)
+            
+        } else {
+            isRecording = false
+            UIView.animate(withDuration: 0.5, delay: 1.0, options: [], animations: { () -> Void in
+                self.recordButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }, completion: nil)
+            
+            
+            recordButton.layer.removeAllAnimations()
+            videoFileOutput?.stopRecording()
+            
+            let title = "動画が保存されました"
+            
+            let message = "わーい"
+            let text = "Done"
+            let alert = UIAlertController(title:title ,message:message, preferredStyle: UIAlertController.Style.alert)
+            let Button = UIAlertAction(title:text,style:UIAlertAction.Style.cancel,handler: nil)
+            alert.addAction(Button)
+            
+            present(alert,animated: true,completion: nil)
+        }
+        
+    }
+    
 }
 
