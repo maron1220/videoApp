@@ -4,15 +4,25 @@
 //
 //  Created by 細川聖矢 on 2019/06/16.
 //  Copyright © 2019 Seiya. All rights reserved.
-//
+
+//AppID↓
+//ca-app-pub-4439113960692957~9098430204
+
+//ユニットID↓
+//ca-app-pub-4439113960692957/4883853021
 
 import UIKit
 import AVFoundation
 import Photos
+import GoogleMobileAds
 
 
 //AVCaptureFileOutputRecordingDelegateは必須
 class ViewController: UIViewController , AVCaptureFileOutputRecordingDelegate {
+    
+    
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         PHPhotoLibrary.shared().performChanges({
@@ -52,6 +62,11 @@ class ViewController: UIViewController , AVCaptureFileOutputRecordingDelegate {
         setupInputOutput()
         setupPreviewLayer()
         setupRunningCaptureSession()
+        
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
     }
     
     //関数を作る

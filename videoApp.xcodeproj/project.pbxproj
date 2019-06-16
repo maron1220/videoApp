@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B6BD780F99FEC1FBEF6DB26 /* Pods_videoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789EB1CCA56735FFBFE29220 /* Pods_videoApp.framework */; };
 		2D2C45CE22B5C8B20056CB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C45CD22B5C8B20056CB2B /* AppDelegate.swift */; };
 		2D2C45D022B5C8B20056CB2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C45CF22B5C8B20056CB2B /* ViewController.swift */; };
 		2D2C45D322B5C8B20056CB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2C45D122B5C8B20056CB2B /* Main.storyboard */; };
@@ -22,6 +23,9 @@
 		2D2C45D422B5C8B70056CB2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D2C45D722B5C8B70056CB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D2C45D922B5C8B70056CB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		771E21F5348157E534FB742A /* Pods-videoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-videoApp.release.xcconfig"; path = "Target Support Files/Pods-videoApp/Pods-videoApp.release.xcconfig"; sourceTree = "<group>"; };
+		789EB1CCA56735FFBFE29220 /* Pods_videoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_videoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		937BE371C09D9C9D9329AB54 /* Pods-videoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-videoApp.debug.xcconfig"; path = "Target Support Files/Pods-videoApp/Pods-videoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6BD780F99FEC1FBEF6DB26 /* Pods_videoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180D927F78CC57A73D61F0AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				789EB1CCA56735FFBFE29220 /* Pods_videoApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2D2C45C122B5C8B20056CB2B = {
 			isa = PBXGroup;
 			children = (
 				2D2C45CC22B5C8B20056CB2B /* videoApp */,
 				2D2C45CB22B5C8B20056CB2B /* Products */,
+				FE698F075D92CD671101F3DD /* Pods */,
+				180D927F78CC57A73D61F0AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,16 @@
 			path = videoApp;
 			sourceTree = "<group>";
 		};
+		FE698F075D92CD671101F3DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				937BE371C09D9C9D9329AB54 /* Pods-videoApp.debug.xcconfig */,
+				771E21F5348157E534FB742A /* Pods-videoApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D2C45DC22B5C8B70056CB2B /* Build configuration list for PBXNativeTarget "videoApp" */;
 			buildPhases = (
+				576FE0132D6E5D8B1FCE5700 /* [CP] Check Pods Manifest.lock */,
 				2D2C45C622B5C8B20056CB2B /* Sources */,
 				2D2C45C722B5C8B20056CB2B /* Frameworks */,
 				2D2C45C822B5C8B20056CB2B /* Resources */,
+				FDFCD96F9808737C9D7B08C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		576FE0132D6E5D8B1FCE5700 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-videoApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDFCD96F9808737C9D7B08C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-videoApp/Pods-videoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-videoApp/Pods-videoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-videoApp/Pods-videoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D2C45C622B5C8B20056CB2B /* Sources */ = {
@@ -280,6 +349,7 @@
 		};
 		2D2C45DD22B5C8B70056CB2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937BE371C09D9C9D9329AB54 /* Pods-videoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +368,7 @@
 		};
 		2D2C45DE22B5C8B70056CB2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 771E21F5348157E534FB742A /* Pods-videoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
